@@ -4,9 +4,9 @@ import json
 
 # --- Segment 1: Data Initialization -----
 
-df1 = pd.read_csv('../../tmdb_5000_credits.csv')
-df2 = pd.read_csv('../../tmdb_5000_movies.csv')
-df3 = pd.read_csv('../../movies_metadata_edited.csv')
+df1 = pd.read_csv('../datasets/tmdb_5000_credits.csv')
+df2 = pd.read_csv('../datasets/tmdb_5000_movies.csv')
+df3 = pd.read_csv('../datasets/movies_metadata_edited.csv')
 
 df1 = df1.drop_duplicates()
 df2 = df2.drop_duplicates()
