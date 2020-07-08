@@ -37,9 +37,6 @@ q_movies = q_movies.sort_values('score', ascending=False)
 q_movies['genres'] = q_movies['genres'].apply(json.loads)
 
 def retrieve_popular_movies(how_many):
-	json_string = pd.DataFrame.to_json(q_movies[['title', 'imdb_id', 'genres', 'overview', 'vote_count', 'vote_average', 'score']].head(how_many), orient='table')
-	parsed = json.loads(json_string)
-	return json.dumps(parsed, indent=4, sort_keys=True)
-
-#Example:	
-print(retrieve_popular_movies(10))	
+    json_string = pd.DataFrame.to_json(q_movies[['id', 'title', 'imdb_id', 'genres', 'overview', 'vote_count', 'vote_average', 'score']].head(how_many), orient='records')
+    parsed = json.loads(json_string)
+    return json.dumps(parsed, indent=4, sort_keys=True)
