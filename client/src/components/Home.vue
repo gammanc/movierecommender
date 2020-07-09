@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="px-12">
     <v-row class="mt-12">
-      <div class="text-h5 text-md-h4">Populares</div>
+      <div class="text-h5 text-md-h4">Popular</div>
     </v-row>
 
     <v-row class="mt-4" justify="space-between">
@@ -11,15 +11,18 @@
         cols="12"
         sm="6"
         md="4"
-        lg="2"
+        lg="3"
       >
         <v-card>
           <v-img :src="movie.poster" contain max-height="390"> </v-img>
-          <v-card-title>{{ movie.name }}</v-card-title>
+          <v-card-title>{{ movie.title}}</v-card-title>
+          <div class="ml-3">
+            <v-chip v-for="genre in movie.genres" :key="genre.id" class="mx-1" small>{{genre.name}}</v-chip>
+          </div>
           <v-card-subtitle class="pt-3 pb-0">
             <v-icon color="primary">star</v-icon>
             <span>
-              {{ movie.rating.toFixed(1) }}
+              {{ movie.score.toFixed(1) }}
             </span>
           </v-card-subtitle>
           <v-card-text class="text--primary"> </v-card-text>
@@ -34,45 +37,27 @@
 <script>
 export default {
   name: "Home",
-
+  mounted(){
+    this.getPopularMovies().then(data => {this.movies= data});
+  },
   data: () => ({
-    movies: [
-      {
-        id: 1,
-        name: "Interstellar",
-        poster:
-          "https://images-na.ssl-images-amazon.com/images/I/716P1xCmnPL._AC_SY879_.jpg",
-        rating: 8.3,
-      },
-      {
-        id: 2,
-        name: "Deadpool",
-        poster:
-          "https://images-na.ssl-images-amazon.com/images/I/51Gh9OaWVcL._AC_.jpg",
-        rating: 8.1,
-      },
-      {
-        id: 3,
-        name: "Guardians of the Galaxy",
-        poster:
-          "https://images-na.ssl-images-amazon.com/images/I/51T5sJngQLL._AC_.jpg",
-        rating: 8.1,
-      },
-      {
-        id: 4,
-        name: "Mad Max: Fury Road",
-        poster:
-          "https://images-na.ssl-images-amazon.com/images/I/A1Y9Cqo1FmL._AC_SL1500_.jpg",
-        rating: 8.4,
-      },
-      {
-        id: 5,
-        name: "Jurassic World",
-        poster:
-          "https://1.bp.blogspot.com/-lBYbuJgkQDw/Vi-zdMWzdBI/AAAAAAAARfo/IPl_TE8-p08/s1600/2.jpg",
-        rating: 8.0,
-      },
-    ],
+    movies: []
   }),
+
+  methods:{
+    async getPopularMovies(){
+      let response = await fetch('http://localhost:5000/api/movies/popular');
+      let data = await response.json();
+      data.forEach(movie => {
+        fetch(`http://www.omdbapi.com/?i=${movie.imdb_id}&apikey=d3361710`)
+        .then(response => {
+          return response.json();
+        })
+        .then(json => { this.$set(movie,'poster',json.Poster) })
+      });
+      console.log("MOVIES", data)
+      return data;
+    },
+  }
 };
 </script>
