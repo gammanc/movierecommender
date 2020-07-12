@@ -13,12 +13,20 @@ We need a virtual environment in order to isolate our project dependencies. To c
 ```
 python -m venv env
 ```
+Windows
+```
+py -3 -m venv .env
+```
 
 **Note**: *env* is the name of your virtual environment, you can change it if you want.
 
 ### Activate the virtualenv
 ```
 source env/bin/activate
+```
+Windows
+```
+.env\scripts\activate
 ```
 
 Make sure your terminal prompt starts with the name of your virtual environment in parentheses. Something like this:
@@ -30,6 +38,10 @@ Make sure your terminal prompt starts with the name of your virtual environment 
 ### Restore project dependencies
 
 `pip install -r requirements.txt`
+
+Windows
+
+`python -m pip install -r requirements.txt`
 
 ### Start the server
 ```
