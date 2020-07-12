@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="px-12">
-    <v-row class="mt-12">
+    <v-row>
       <div class="text-h5 text-md-h4">Popular</div>
     </v-row>
 
