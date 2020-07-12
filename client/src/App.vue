@@ -48,7 +48,19 @@
         <router-view />
       </v-fade-transition>
     </v-content>
-    
+      <v-footer width="100%" padless>
+         <v-card
+          flat
+          tile
+          width="100%"
+          class="black text-center"
+        >
+        <v-card-text class="white--text">
+          Released under the <a href="" target="_blank" rel="noopener" style="color:white;"><strong>... License</strong></a><br>
+             Copyright &copy;  {{ new Date().getFullYear() }} — <strong>movie recommender</strong>
+          </v-card-text>
+         </v-card>
+    </v-footer>
   </v-app>
 </template>
 
