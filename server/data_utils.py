@@ -78,6 +78,7 @@ def get_recommendations(title, how_many, cosine_sim=cosine_sim):
     
     rdf = df2.copy().iloc[movie_indices]
     rdf['score'] = rdf.apply(weighted_rating, axis=1)
+    rdf['genres'] = rdf['genres'].apply(json.loads)
     
     json_string = pd.DataFrame.to_json(rdf[['id', 'title', 'imdb_id', 'genres', 'overview', 'vote_count', 'vote_average', 'score']].head(how_many), orient='records')
     return json.loads(json_string)
