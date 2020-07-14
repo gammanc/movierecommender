@@ -35,7 +35,8 @@
           <v-card @click="selected_movie = movie.title; search_term=''; getRecommendedMovies()">
             <v-card-text>
               <div class="d-flex align-center">
-                <p class="text-body-1 text--primary">{{movie.title}}</p>
+                <p class="text-body-1 text--primary" v-html="boldSubstring(movie.title)"></p>
+                <!-- <p class="text-body-1 text--primary">{{movie.title}}</p> -->
                 <v-icon color="secondary" class="ml-auto">star</v-icon>
                 <span style="color:#777;" class="subheading ml-2">{{movie.score.toFixed(2)}}</span>
               </div>
@@ -152,17 +153,13 @@ export default {
       // return data;
     },
 
-    showMoviesMenu(e) {
-      e.preventDefault();
-      this.showMenu = false;
-      this.menu_x = e.clientX;
-      this.menu_y = e.clientY;
-      this.$nextTick(() => {
-        this.showMenu = true;
-      });
+    boldSubstring: function(movie_title) {
+      return movie_title.replace(
+        RegExp("(" + this.search_term + ")", "ig"),
+        '<b style="color:darkcyan">$1</b>'
+      );
     }
   },
-
   computed: {
     filterMovies: function() {
       if (!this.search_term) return [];
