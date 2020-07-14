@@ -62,24 +62,27 @@ indices = pd.Series(df2.index, index=df2['title']).drop_duplicates()
 
 def get_recommendations(title, how_many, cosine_sim=cosine_sim):
     # Get the index of the movie that matches the title
-    idx = indices[title]
-
-    # Get the pairwsie similarity scores of all movies with that movie
-    sim_scores = list(enumerate(cosine_sim[idx]))
-
-    # Sort the movies based on the similarity scores
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-
-    # Get the scores of the how_many most similar movies
-    sim_scores = sim_scores[1:how_many+1]
-
-    # Get the movie indices
-    movie_indices = [i[0] for i in sim_scores]
+    idx = indices.get(title, None)
     
-    rdf = df2.copy().iloc[movie_indices]
-    rdf['score'] = rdf.apply(weighted_rating, axis=1)
-    rdf['genres'] = rdf['genres'].apply(json.loads)
+    if idx is None:
+    	return {}
+    else:	
+    	# Get the pairwsie similarity scores of all movies with that movie
+    	sim_scores = list(enumerate(cosine_sim[idx]))
+
+    	# Sort the movies based on the similarity scores
+    	sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+
+    	# Get the scores of the how_many most similar movies
+    	sim_scores = sim_scores[1:how_many+1]
+
+    	# Get the movie indices
+    	movie_indices = [i[0] for i in sim_scores]
     
-    json_string = pd.DataFrame.to_json(rdf[['id', 'title', 'imdb_id', 'genres', 'overview', 'vote_count', 'vote_average', 'score']].head(how_many), orient='records')
-    return json.loads(json_string)
+    	rdf = df2.copy().iloc[movie_indices]
+    	rdf['score'] = rdf.apply(weighted_rating, axis=1)
+    	rdf['genres'] = rdf['genres'].apply(json.loads)
     
+    	json_string = pd.DataFrame.to_json(rdf[['id', 'title', 'imdb_id', 'genres', 'overview', 'vote_count', 'vote_average', 'score']].head(how_many), orient='records')
+    	return json.loads(json_string)
+
