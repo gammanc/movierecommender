@@ -25,6 +25,7 @@ C = df2['vote_average'].mean()
 m = df2['vote_count'].quantile(0.9)
 
 def weighted_rating(x, m=m, C=C):
+    #This function is used to calculate the IMDb score for every movie, since it is not included in the datasets.
     v = x['vote_count']
     R = x['vote_average']
     return (v/(v+m) * R) + (m/(m+v) * C)
@@ -40,10 +41,52 @@ q_movies = q_movies.sort_values('score', ascending=False)
 q_movies['genres'] = q_movies['genres'].apply(json.loads)
 
 def retrieve_popular_movies(how_many):
+    
+    '''
+    This function returns the most popular movies. 
+        
+    Arguments
+    ---------
+    
+    how_many: int, required
+    	Specifies how many movies to return.
+    
+    Exception handling
+    ------
+    If no number is specified in the how_many argument, all movies sorted by their score are returned.
+    
+    Returns
+    -------
+    List of movie objects serialized as JSON. The list contains the how_many most popular movies, sorted
+    according to their IMDb score. 
+        
+    '''
+    
+    
     json_string = pd.DataFrame.to_json(q_movies[['id', 'title', 'imdb_id', 'genres', 'overview', 'vote_count', 'vote_average', 'score']].head(how_many), orient='records')
     return json.loads(json_string)
     
 def retrieve_names(how_many):
+  
+    '''
+    This function is used to get movie titles.
+        
+    Arguments
+    ---------
+    
+    how_many: int, required
+    	Specifies how many movies to return.
+    
+    Exception handling
+    ------
+    If no number is specified in the how_many argument, all movies sorted by their score are returned.
+    
+    Returns
+    -------
+    List of movie objects serialized as JSON. 
+        
+    '''
+  
     if how_many is None:
         json_string = pd.DataFrame.to_json( q_movies[['id', 'title', 'score']], orient = 'records' )
     else:
@@ -61,6 +104,38 @@ cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
 indices = pd.Series(df2.index, index=df2['title']).drop_duplicates()
 
 def get_recommendations(title, how_many, cosine_sim=cosine_sim):
+    
+    '''
+    Given a movie title, this function searchs for related movies
+    and provides recommendations.
+        
+    Arguments
+    ---------
+    title: string, required
+    	Name of a movie. Based on the title, will look for similar movies and return
+    	how_many of them.
+    
+    how_many: int, required
+    	      
+    	Specifies how many similar movies to return.
+    
+    cosine_sim: can be any kernel from sklearn.metrics.pairwise, optional
+    	This argument specifies the similarity measure to be used in the calculations.
+    	By default, it uses the simplest kernel, which is the linear kernel and computes
+    	the standard inner product for suitable vectors.  	   
+    
+    Exception handling
+    ------
+    If the title is not found, an empty dictionary is returned
+    Returns
+    -------
+    List of simple movie objects serialized as JSON. Every movie object contains
+    
+    the following data: id, title, imdb_id, genres, overview, vote_count, vote_average
+    and score.
+        
+    '''
+    
     # Get the index of the movie that matches the title
     idx = indices.get(title, None)
     
