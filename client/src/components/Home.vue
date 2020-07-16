@@ -1,3 +1,21 @@
+<!--
+  This file is part of movie recommender.
+
+  Copyright (C) 2020 by Emerson Nolasco and Karla Cruz
+  
+  movie recommender is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  movie recommender is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+ -->
 <template>
   <div>
     <v-carousel cycle height="600" hide-delimiter-background :show-arrows="false" class="padTop">
@@ -29,7 +47,7 @@
         </v-col>
       </v-row>
 
-      <!-- Search resuts -->
+      <!-- Search results -->
       <v-row v-if="search_term">
         <v-col cols="12" md="6" lg="4" v-for="movie in filterMovies" :key="movie.id">
           <v-card @click="selected_movie = movie.title; search_term=''; getRecommendedMovies()">
