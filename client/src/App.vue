@@ -50,7 +50,7 @@
           class="black text-center"
         >
         <v-card-text class="white--text">
-          Released under the <a href="" target="_blank" rel="noopener" style="color:white; text-decoration:none;"><strong>... License</strong></a><br>
+          Released under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener" style="color:white; text-decoration:none;"><strong>GPLv3 License</strong></a><br>
              Copyright &copy;  {{ new Date().getFullYear() }} — <strong>movie recommender</strong>
           </v-card-text>
          </v-card>
