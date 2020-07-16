@@ -50,6 +50,11 @@
           class="black text-center"
         >
         <v-card-text class="white--text">
+          Content from
+          <a href="http://www.omdbapi.com/" target="_blank" rel="noopener" style="color:white; text-decoration:none;"><strong>OMDb Api</strong></a> by 
+          <a href="mailto:bfritz@fadingsignal.com" target="_blank" rel="noopener" style="color:white; text-decoration:none;"><strong>Brian Fritz</strong></a><br>
+          licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener" style="color:white; text-decoration:none;"><strong>CC BY-NC 4.0</strong></a><br>
+          <br><v-divider></v-divider><br>
           Released under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener" style="color:white; text-decoration:none;"><strong>GPLv3 License</strong></a><br>
              Copyright &copy;  {{ new Date().getFullYear() }} — <strong>movie recommender</strong>
           </v-card-text>
