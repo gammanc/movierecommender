@@ -30,11 +30,8 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn href="https://github.com/" target="_blank" icon>
+      <v-btn href="https://github.com/gammanc/movierecommender" target="_blank" icon>
         <v-icon>mdi-github</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>account_circle</v-icon>
       </v-btn>
     </v-app-bar>
     <v-content class="" style="padding-top:34px;">
