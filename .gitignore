@@ -1,0 +1,7 @@
+datasets/*
+!datasets/movies_metadata_edited.csv
+.vscode/
+node_modules/
+env/
+
+.DS_Store
