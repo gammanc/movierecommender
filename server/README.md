@@ -1,4 +1,4 @@
-# Movie recommended server
+# Movie recommender server
 
 If you need more detail, you can visit our [wiki](https://github.com/gammanc/movierecommender/wiki/Quick-start#server-rest-api)
 
