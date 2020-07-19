@@ -2,10 +2,9 @@
 
 _Movie recommender adaptation for [Kaggle notebook](#credits)._
 
-# Screenshots
 
 ![Website slider](./screenshots/website-01.png)
-![Website movie recommendations](./screenshots/website-04-related.png)
+
 
 # Download
 
@@ -14,6 +13,7 @@ This project uses two datasets that you can find in Kaggle. However, you only ne
 Clone or download this repository. You can find simplified instructions for installation in `server/` and `client/` directories, make sure to follow them in that order, first the server, then the client. If you need a more detailed explanation you can check our [Quick start guide](https://github.com/gammanc/movierecommender/wiki/Quick-start).
 
 # How to use it 
+
 
 On the main page you'll find the most popular movies. If you'd like to search for a specific film, you can start writing the title and you'll get suggestions as you're typing. For instance, when typing Iron Man, the following happens:
 
