@@ -6,13 +6,13 @@ _Movie recommender adaptation for [Kaggle notebook](#credits)._
 ![Website slider](./screenshots/website-01.png)
 
 
-# Download and install
+# Download and Install
 
 This project uses two datasets that you can find in Kaggle. However, you only need to download the [TMDB 5000 Movie Dataset](https://www.kaggle.com/tmdb/tmdb-movie-metadata) and copy the files to the dataset directory. We use only one file from [The Movie Dataset](https://www.kaggle.com/rounakbanik/the-movies-dataset), but we had to modified it due to some minor issues, so that one is already included.
 
 Clone or download this repository. You can find simplified instructions for installation in `server/` and `client/` directories, make sure to follow them in that order, first the server, then the client. If you need a more detailed explanation you can check our [Quick start guide](https://github.com/gammanc/movierecommender/wiki/Quick-start).
 
-# How to use it 
+# How to Use It 
 
 
 On the main page you'll find the most popular movies. If you'd like to search for a specific film, you can start writing the title and you'll get suggestions as you're typing. For instance, when typing Iron Man, the following happens:
